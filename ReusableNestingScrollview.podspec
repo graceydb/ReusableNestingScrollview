@@ -10,5 +10,4 @@ Pod::Spec.new do |s|
   s.source       = { :git => "https://github.com/dequan1331/ReusableNestingScrollview.git", :tag => "0.0.1" }
   s.source_files = "ReusableNestingScrollview/ReusableNestingScrollview", "ReusableNestingScrollview/Source/**/*.{h,m}"
   s.frameworks = "UIKit"
-  s.ios.deployment_target = '11.2'
 end
