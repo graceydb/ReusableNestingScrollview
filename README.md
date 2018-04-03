@@ -2,7 +2,7 @@
 
 ReusableNestingScrollview是一个解决滚动视图中SubView全局复用和回收问题的组件。区别于传统的类似解决方案，RNS无需继承特殊ScrollView，只通过扩展Delegate的方式实现，从而更广泛的支持WKWebView、UIWebView等滚动视图，更加通用和独立。
 
-> 组件服务于[HybridPageKit](https://github.com/dequan1331/HybridPageKit)，一个资讯类内容底层页完善的通用组件。
+> 与[WKWebViewExtension](https://github.com/dequan1331/WKWebViewExtension)一起，组件服务于[HybridPageKit](https://github.com/dequan1331/HybridPageKit)，一个资讯类内容底层页完善的通用组件。
 
 ##Features
 
