@@ -57,9 +57,7 @@
     
     if ([NSThread isMainThread]) {
         if(processBlock){
-            NSMutableDictionary * componentItemTmp = _componentItemDic.mutableCopy;
-            processBlock(componentItemTmp);
-            _componentItemDic = componentItemTmp.copy;
+            _componentItemDic = [processBlock(_componentItemDic) copy];
         }
         
         [self detailComponentsDidUpdateWithOffsetTop:self.scrollView.contentOffset.y];

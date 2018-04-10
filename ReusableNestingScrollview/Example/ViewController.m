@@ -51,9 +51,6 @@
 -(Class)getComponentViewClass{
     return _componentViewClass;
 }
--(__kindof RNSComponentContext *)getCustomContext{
-    return nil;
-}
 @end
 
 
@@ -122,19 +119,21 @@
         }
     }];
     
-    [_handler reloadComponentViewsWithProcessBlock:^(NSMutableDictionary<NSString *,NSObject<RNSModelProtocol> *> *componentItemDic) {
+    [_handler reloadComponentViewsWithProcessBlock:^NSDictionary<NSString *,NSObject<RNSModelProtocol> *> *(NSDictionary<NSString *,NSObject<RNSModelProtocol> *> *componentItemDic) {
         CGFloat offsetY = 0.f;
         NSArray * viewClassArray = @[@"UIImageView",@"UILabel"];
+        NSMutableDictionary *componentItemDicTmp = componentItemDic.mutableCopy;
         
         for (int i = 0 ;i < 20; i++) {
             CGFloat height = (arc4random_uniform(3) + 1) * 50;
-            [componentItemDic setObject:[[TestModel alloc]initWithUniqueId:@(i).stringValue
-                                                                   componentFrame:CGRectMake(0, offsetY, [[UIScreen mainScreen] bounds].size.width, height)
-                                                               componentViewClass:NSClassFromString([viewClassArray objectAtIndex:arc4random_uniform(2)])] forKey:@(i).stringValue];
+            [componentItemDicTmp setObject:[[TestModel alloc]initWithUniqueId:@(i).stringValue
+                                                            componentFrame:CGRectMake(0, offsetY, [[UIScreen mainScreen] bounds].size.width, height)
+                                                        componentViewClass:NSClassFromString([viewClassArray objectAtIndex:arc4random_uniform(2)])] forKey:@(i).stringValue];
             offsetY += height + 20;
         }
         
         wself.containerView.contentSize = CGSizeMake(self.containerView.contentSize.width, offsetY);
+        return [componentItemDicTmp copy];
     }];
 }
 
